@@ -1,4 +1,4 @@
-const getComputerChoice = () => {
+function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     switch (randomNumber) {
         case 0:
@@ -13,38 +13,24 @@ const getComputerChoice = () => {
          
         };
 }
-console.log(getComputerChoice());
+
 
 function playRound(playerSelection, computerSelection) {
-    if(playerSelection === "rock" && computerSelection === "scissors"){
-        return playerSelection;
-    }
-    else if(playerSelection === "rock" && computerSelection === "paper"){
-        return computerSelection;
-    }
-    else if(playerSelection === "rock" && computerSelection === "rock"){
-        return false;
-    }
-    else if(playerSelection === "scissors" && computerSelection === "scissors"){
-        return false;
-    }
-    else if(playerSelection === "scissors" && computerSelection === "paper"){
-        return playerSelection;
-    }
-    else if(playerSelection === "scissors" && computerSelection === "rock"){
-        return computerSelection;
-    }
-    else if(playerSelection === "paper" && computerSelection === "scissors"){
-        return computerSelection;
-    }
-    else if(playerSelection === "paper" && computerSelection === "paper"){
-        return false;
-    }
-    else if(playerSelection === "paper" && computerSelection === "rock"){
-        return playerSelection;
+    console.log("Player selection: " + playerSelection);
+    console.log("Computer chose: " + computerSelection);
+    if (playerSelection === computerSelection) {
+        return "Tie";
+    } else if (
+        (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "scissors" && computerSelection === "paper") ||
+        (playerSelection === "paper" && computerSelection === "rock")
+    ) {
+        return "Player won";
+    } else {
+        return "Computer won";
     }
 }
-
-const playerSelection = "scissors";
+    
+const playerSelection = prompt("Vvedite svoi otvet ");
 const computerSelection = getComputerChoice();
 console.log(playRound(playerSelection, computerSelection));
