@@ -14,23 +14,36 @@ function getComputerChoice() {
         };
 }
 
+function playGame() {
+    let scoreUser = 0;
+    let scoreComputer = 0;
+    for(let i = 1; i < 6; i++ ) {
+        const playerSelection = "rock"; // Здесь можно изменить выбор игрока
+        const computerSelection = getComputerChoice();
+        
+        console.log("Round " + i);
+        console.log(playRound(playerSelection, computerSelection));
+        console.log("User = " + scoreUser);
+        console.log("Js = " + scoreComputer)
+    }
 
-function playRound(playerSelection, computerSelection) {
-    console.log("Player selection: " + playerSelection);
-    console.log("Computer chose: " + computerSelection);
-    if (playerSelection === computerSelection) {
-        return "Tie";
-    } else if (
-        (playerSelection === "rock" && computerSelection === "scissors") ||
-        (playerSelection === "scissors" && computerSelection === "paper") ||
-        (playerSelection === "paper" && computerSelection === "rock")
-    ) {
-        return "Player won";
-    } else {
-        return "Computer won";
+    function playRound(playerSelection, computerSelection) {
+        console.log("Player selection: " + playerSelection);
+        console.log("Computer chose: " + computerSelection);
+        if (playerSelection === computerSelection) {
+            return "Tie";
+        } else if (
+            (playerSelection === "rock" && computerSelection === "scissors") ||
+            (playerSelection === "scissors" && computerSelection === "paper") ||
+            (playerSelection === "paper" && computerSelection === "rock")
+        ) {
+            scoreUser += 1;
+            return "Player won";
+
+        } else {
+            scoreComputer += 1;
+            return "Computer won";
+        }
     }
 }
-    
-const playerSelection = prompt("Vvedite svoi otvet ");
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+console.log(playGame());
