@@ -1,3 +1,24 @@
+const rock = document.querySelector('.rock');
+rock.addEventListener('click', function() {
+    const computerSelection = getComputerChoice();
+    console.log(playRound("rock", computerSelection));
+
+})
+
+const paper = document.querySelector('.paper');
+paper.addEventListener('click', function() {
+    const computerSelection = getComputerChoice();
+    console.log(playRound("paper", computerSelection))
+
+})
+
+const scissors = document.querySelector('.scissors');
+scissors.addEventListener('click', function() {
+    const computerSelection = getComputerChoice();
+    console.log(playRound("scissors", computerSelection))
+
+})
+
 function getComputerChoice() {
     let randomNumber = Math.floor(Math.random() * 3);
     switch (randomNumber) {
@@ -14,18 +35,17 @@ function getComputerChoice() {
         };
 }
 
-function playGame() {
+// function playGame() {
     let scoreUser = 0;
     let scoreComputer = 0;
-    for(let i = 1; i < 6; i++ ) {
-        const playerSelection = "rock"; // Здесь можно изменить выбор игрока
-        const computerSelection = getComputerChoice();
+    // for(let i = 1; i < 6; i++ ) {
+        // const playerSelection = "rock"; // Здесь можно изменить выбор игрока
         
-        console.log("Round " + i);
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("User = " + scoreUser);
-        console.log("Js = " + scoreComputer)
-    }
+        // console.log("Round 1" );
+        // console.log(playRound(playerSelection, computerSelection));
+        // console.log("User = " + scoreUser);
+        // console.log("Js = " + scoreComputer)
+    // }
 
     function playRound(playerSelection, computerSelection) {
         console.log("Player selection: " + playerSelection);
@@ -45,5 +65,7 @@ function playGame() {
             return "Computer won";
         }
     }
-}
-console.log(playGame());
+
+// }
+// console.log(playGame());
+
