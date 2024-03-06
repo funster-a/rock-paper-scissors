@@ -1,71 +1,53 @@
-const rock = document.querySelector('.rock');
-rock.addEventListener('click', function() {
-    const computerSelection = getComputerChoice();
-    console.log(playRound("rock", computerSelection));
+const choices = ["rock", "paper", "scissors"];
+const playerDisplay = document.getElementById("playerDisplay");
+const computerDisplay = document.getElementById("computerDisplay");
+const resultDisplay = document.getElementById("resultDisplay");
+const playerScoreDisplay = document.getElementById("playerScoreDisplay");
+const computerScoreDisplay = document.getElementById("computerScoreDisplay");
+let playerScore = 0;
+let computerScore = 0;
 
-})
+function playGame(playerChoice){
 
-const paper = document.querySelector('.paper');
-paper.addEventListener('click', function() {
-    const computerSelection = getComputerChoice();
-    console.log(playRound("paper", computerSelection))
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+    let result = "";
 
-})
-
-const scissors = document.querySelector('.scissors');
-scissors.addEventListener('click', function() {
-    const computerSelection = getComputerChoice();
-    console.log(playRound("scissors", computerSelection))
-
-})
-
-function getComputerChoice() {
-    let randomNumber = Math.floor(Math.random() * 3);
-    switch (randomNumber) {
-        case 0:
-            return "rock";
-            break;
-        case 1:
-            return "scissors"
-            break;
-        case 2:
-            return "paper"
-            break;
-         
-        };
-}
-
-// function playGame() {
-    let scoreUser = 0;
-    let scoreComputer = 0;
-    // for(let i = 1; i < 6; i++ ) {
-        // const playerSelection = "rock"; // Здесь можно изменить выбор игрока
-        
-        // console.log("Round 1" );
-        // console.log(playRound(playerSelection, computerSelection));
-        // console.log("User = " + scoreUser);
-        // console.log("Js = " + scoreComputer)
-    // }
-
-    function playRound(playerSelection, computerSelection) {
-        console.log("Player selection: " + playerSelection);
-        console.log("Computer chose: " + computerSelection);
-        if (playerSelection === computerSelection) {
-            return "Tie";
-        } else if (
-            (playerSelection === "rock" && computerSelection === "scissors") ||
-            (playerSelection === "scissors" && computerSelection === "paper") ||
-            (playerSelection === "paper" && computerSelection === "rock")
-        ) {
-            scoreUser += 1;
-            return "Player won";
-
-        } else {
-            scoreComputer += 1;
-            return "Computer won";
+    if(playerChoice === computerChoice){
+        result = "IT'S A TIE!";
+    }
+    else{
+        switch(playerChoice){
+            case "rock":
+                result = (computerChoice === "scissors") ? "YOU WIN!" : "YOU LOSE!";
+                break;
+            case "paper":
+                result = (computerChoice === "rock") ? "YOU WIN!" : "YOU LOSE!";
+                break;
+            case "scissors":
+                result = (computerChoice === "paper") ? "YOU WIN!" : "YOU LOSE!";
+                break;
         }
     }
 
-// }
-// console.log(playGame());
+    playerDisplay.textContent = `PLAYER: ${playerChoice}`;
+    computerDisplay.textContent = `Computer: ${computerChoice}`;
+    resultDisplay.textContent = result;
 
+    resultDisplay.classList.remove("greenText", "redText");
+
+    switch(result){
+        case "YOU WIN!":
+            resultDisplay.classList.add("greenText");
+            playerScore++;
+            playerScoreDisplay.textContent = playerScore;
+            break;
+        case "YOU LOSE!":
+            resultDisplay.classList.add("redText");
+            computerScore++;
+            computerScoreDisplay.textContent = computerScore;
+            break;
+    }
+    if(playerScore === 3) return 
+
+    
+}
